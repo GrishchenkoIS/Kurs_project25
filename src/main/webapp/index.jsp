@@ -16,13 +16,28 @@
         <form action="${pageContext.request.contextPath}/JavaCalc" method="post" class="main__forms">
             <div class="main__form">
                 <label for="size" class="main__text"> Размер ипотеки: </label>
-                <input type="text" name="size" id="size" value="${size}" class="main__input">
+                <input type="text" name="sizeMortgage" id="sizeMortgage" value="${sizeMortgage}" class="main__input">
                 <label for="firstPay" class="main__text"> Первый взнос: </label>
                 <input type="text" name="firstPay" id="firstPay" value="${firstPay}" class="main__input">
                 <label for="data" class="main__text"> Количество месяцев: </label>
                 <input  type="text" name="data" id="data" value="${data}" class="main__input">
-                <label for="" class="main__text"> </label>
-                <input type="text" class="main__input">
+                <label for="" class="main__text"> Валюта </label>
+                <select name="currency" id="currency" value="${currency}">
+                    <option value="dollar">доллар</option>
+                    <option value="rub">рубль</option>
+                    <option value="euro">евро</option>
+                </select>
+                <label for="" class="main__text"> Страховка </label>
+                <select name="strahovka" id="strahovka" value="${strahovka}">
+                    <option value="dollar">нет</option>
+                    <option value="rub">есть</option>
+                </select>
+                <label for="" class="main__text"> Цель кредита </label>
+                <select name="target" id="target" value="${target}">
+                    <option value="ready houese">Готовое жилье</option>
+                    <option value="new house">Новостройка</option>
+                    <option value="commercial">Коммерческая</option>
+                </select>
                 <input type="submit" name="sign" value="Расчитать" class="main__submit">
             </div>
         </form>
