@@ -18,6 +18,9 @@ body {
 .main {
 	margin: 0 auto;
 }
+.text {
+	font-size: 20px;
+}
 .main__forms {
 	max-width: 500px;
 	background-color: #f7f7f7;
@@ -36,7 +39,7 @@ body {
 }
 .main__text {
 	min-width: 150px;
-	font-size: 20px;
+	
 }
 .main__input {
 	min-width: 150px;
@@ -47,6 +50,28 @@ body {
 }
 
 .main__submit {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+.result {
+	background-color: #f7f7f7;
+	border: 1px solid #7d7d7d;
+	display: grid;
+	max-width: 800px;
+	grid-template-columns: repeat(2, 1fr);
+	border-radius: 20px;
+	grid-row-gap: 10px;
+	padding: 20px 20px;
+
+}
+.result__text {}
+.result__result {
+	text-align: center;
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+.result__form {
+	text-align: right;
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
