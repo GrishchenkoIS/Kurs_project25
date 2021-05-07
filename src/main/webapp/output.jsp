@@ -1,23 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Ипотечный калькулятор для юридических лиц</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <header class="header container">
         <h1 class="header__name">Результаты вычислений</h1>
     </header>
     <div class="result container">
-        <p class="result__text text"><strong>Размер ипотеки: </strong>${sizeMortgage}</p>
-        <p class="result__text text"><strong>Первый взнос: </strong>${firstPay}</p>
-        <p class="result__text text"><strong>Количество месяцев: </strong>${data}</p>
-        <p class="result__text text"><strong>Валюта: </strong>${currency}</p>
-        <p class="result__text text"><strong>Страховка: </strong>${strahovka}</p>
-        <p class="result__text text"><strong>Цель кредита: </strong>${target}</p>
-        <p class="result__result text">Ресультат: ${result}</p>
+        <p class="result__text text"><strong>Размер ипотеки: </strong>${first_result}</p>
+        <p class="result__text text"><strong>Первый взнос: </strong>${second_result}</p>
+        <p class="result__text text"><strong>Количество месяцев: </strong>${data_result}</p>
+        <p class="result__text text"><strong>Валюта: </strong>${currency_result}</p>
+        <p class="result__text text"><strong>Страховка: </strong>${strahovka_result}</p>
+        <p class="result__text text"><strong>Цель кредита: </strong>${target_result}</p>
+        <p class="result__result text">Ресультат: ${result} ${currency_for_result}</p>
         <form action="${pageContext.request.contextPath}/index.jsp" class="result__form">
             <input type="submit" name="sign" value="Назад">
         </form> 
