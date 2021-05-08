@@ -33,15 +33,15 @@ public class Admin extends HttpServlet {
 		            String word = br.readLine();
 		            if (word.equals(request.getParameter("password"))) {
 		            	request.setAttribute("incorrect", "");
-		            	request.setAttribute("changes", "<label for=\"changes\" class=\"changes__text\"> РќР°СЃС‚СЂРѕР№РєР° СЃС‚Р°РІРєРё :</label>\n"
-		            			+ "                <input type=\"submit\" name=\"sign\" value=\"Р?Р·РјРµРЅРёС‚СЊ\" class=\"changes__submit input\">");
+		            	request.setAttribute("changes", "<label for=\"changes\" class=\"changes__text\"> Настройка ставки :</label>\n"
+		            			+ " <input type=\"submit\" name=\"sign\" value=\"Изменить\" class=\"changes__submit input\">");
 		            	request.setAttribute("display", "none");
 		            	request.setAttribute("admin", "<div class=\"header__form\">\n"
-		            			+ "                <label for=\"\" class=\"header__text\">Р РµР¶РёРј Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°</label>\n"
-		            			+ "                <input type=\"submit\" name=\"sign\" value=\"Р’С‹Р№С‚Рё\" class=\"header__input input\"></div>");
+		            			+ "                <label for=\"\" class=\"header__text\">Режим администратора</label>\n"
+		            			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
 		            	
 						}else {
-						request.setAttribute("incorrect", "РќРµ РїСЂР°РІРёР»СЊРЅС‹Р№ РїР°СЂРѕР»СЊ");
+						request.setAttribute("incorrect", "Не правильный парольЊ");
 						request.setAttribute("changes", "");
 						
 					}

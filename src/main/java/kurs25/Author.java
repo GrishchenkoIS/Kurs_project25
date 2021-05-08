@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.ServletContext;
 
-import kurs25sub.Calc.RequestCalc;
 
 
 @WebServlet(name="Author", urlPatterns="/JavaPass")

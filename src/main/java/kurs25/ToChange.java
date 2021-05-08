@@ -25,24 +25,24 @@ public class ToChange extends HttpServlet  {
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	public static void write(String fileName, String text) {
-	    //РћРїСЂРµРґРµР»СЏРµРј С„Р°Р№Р»
+	    //определяем файл
 	    File file = new File(fileName);
 
 	    try {
-	        //РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РµСЃР»Рё С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ С‚Рѕ СЃРѕР·РґР°РµРј РµРіРѕ
+	        //проверяем, что если файл не существует то создаем его
 	        if(!file.exists()){
 	            file.createNewFile();
 	        }
 
-	        //PrintWriter РѕР±РµСЃРїРµС‡РёС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё Р·Р°РїРёСЃРё РІ С„Р°Р№Р»
+	        //PrintWriter обеспечит возможности записи в файл
 	        PrintWriter out = new PrintWriter(file.getAbsoluteFile());
 
 	        try {
-	            //Р—Р°РїРёСЃС‹РІР°РµРј С‚РµРєСЃС‚ Сѓ С„Р°Р№Р»
+	            //записываем текст у файла
 	            out.print(text);
 	        } finally {
-	            //РџРѕСЃР»Рµ С‡РµРіРѕ РјС‹ РґРѕР»Р¶РЅС‹ Р·Р°РєСЂС‹С‚СЊ С„Р°Р№Р»
-	            //Р?РЅР°С‡Рµ С„Р°Р№Р» РЅРµ Р·Р°РїРёС€РµС‚СЃСЏ
+	            //после чего мы должны закрыть файл
+	            //иначе файл не запишется
 	            out.close();
 	        }
 	    } catch(IOException e) {

@@ -1,6 +1,11 @@
 package kurs25;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,14 +13,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="Calc", urlPatterns="/JavaCalc") //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ URL
+@WebServlet(name="Calc", urlPatterns="/JavaCalc") // URL
 public class Calc extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		InputStream ins = getServletContext().getResourceAsStream("/WEB-INF/resource/password");
 		RequestCalc Calc = RequestCalc.fromRequestParameters(request);
+		if (ins == null) {
+            System.out.println("Failed in reading file");
+        } else {
+            BufferedReader br = new BufferedReader((new InputStreamReader(ins)));
+            String word;
+            while ((word = br.readLine()) != null) {
+            	Calc.stavka.add(word);
+            }
+        }
+		
 		Calc.setAsRequestAttributesAndCalculate(request);
 		 
 		request.getRequestDispatcher("/output.jsp").forward(request, response);
+		Calc.stavka.clear();
 		
 	}
 	
@@ -30,6 +47,7 @@ public class Calc extends HttpServlet {
 		static double first_result;
 		static double second_result;
 		static double data_result;
+		static List<String> stavka = new ArrayList<String>();
 						
 		private RequestCalc (String sizeMortgage, String firstPay, String data, String target, String strahovka, String currency) {
 			this.sizeMortgage = sizeMortgage;
@@ -56,26 +74,26 @@ public class Calc extends HttpServlet {
 			request.setAttribute("second_result", firstPay);
 			request.setAttribute("data_result", data);
 			if (target.equals("ready house")) {
-				request.setAttribute("target_result", "Р“РѕС‚РѕРІРѕРµ Р¶РёР»СЊРµ");
+				request.setAttribute("target_result", "Готовое жилье");
 			} else if (target.equals("new house")) {
-				request.setAttribute("target_result", "РќРѕРІРѕСЃС‚СЂРѕР№РєР°");
+				request.setAttribute("target_result", "Новостройка");
 			} else {
-				request.setAttribute("target_result", "РљРѕРјРјРµСЂС‡РµСЃРєР°СЏ");
+				request.setAttribute("target_result", "Коммерческая");
 			}
 			if (strahovka.equals("No")) {
-				request.setAttribute("strahovka_result", "РќРµС‚");
+				request.setAttribute("strahovka_result", "Нет");
 			} else {
-				request.setAttribute("strahovka_result", "Р•СЃС‚СЊ");
+				request.setAttribute("strahovka_result", "Есть");
 			}
-			if (currency.equals("Dollar")) {
-				request.setAttribute("currency_result", "Р”РѕР»Р»Р°СЂ");
-				request.setAttribute("currency_for_result", "Р”РѕР»Р»Р°СЂРѕРІ РµР¶РµРјРµСЃСЏС‡РЅРѕ");
-			} else if (strahovka.equals("Rub")) {
-				request.setAttribute("currency_result", "Р СѓР±Р»СЊ");
-				request.setAttribute("currency_for_result", "Р СѓР±Р»РµР№ РµР¶РµРјРµСЃСЏС‡РЅРѕ");
+			if (currency.equals("dollar")) {
+				request.setAttribute("currency_result", "Доллар");
+				request.setAttribute("currency_for_result", "Долларов ежемесячно");
+			} else if (currency.equals("rub")) {
+				request.setAttribute("currency_result", "Рубль");
+				request.setAttribute("currency_for_result", "Рублей ежемесячно");
 			} else {
-				request.setAttribute("currency_result", "Р•РІСЂРѕ");
-				request.setAttribute("currency_for_result", "Р•РІСЂРѕ РµР¶РµРјРµСЃСЏС‡РЅРѕ");
+				request.setAttribute("currency_result", "Евро");
+				request.setAttribute("currency_for_result", "Евро ежемесячно");
 			}
 			
 			
