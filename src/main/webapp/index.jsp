@@ -3,13 +3,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Ипотечный калькулятор для юридических лиц</title>
+<meta charset="utf-8">
+<title>Ипотечный калькулятор для юридических лиц</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <header class="header container">
+
+    <header class="header container" >
+    <form action="${pageContext.request.contextPath}/JavaExit" method="post" class="header__admin">
+            ${admin}
+        </form>
+        <form action="${pageContext.request.contextPath}/JavaPass" method="post" class="header__admin">
+            <div class="header__form">
+                <label for="" class="header__text">Административная панель</label>
+                <input type="submit" name="sign" value="Авторизоваться" class="header__input input"></div>
+        </form>
+        
+        <h2 class="header__incorrect">${incorrect}</h2>
         <h1 class="header__name">Ипотечный калькулятор для юридических лиц</h1>
     </header>
     <div class="main">
@@ -21,13 +32,13 @@
                 <input type="text" name="firstPay" id="firstPay" value="${firstPay}" class="main__input">
                 <label for="data" class="main__text"> Количество месяцев: </label>
                 <input  type="text" name="data" id="data" value="${data}" class="main__input">
-                <label for="currency" class="main__text"> Валюта </label>
+                <label for="" class="main__text"> Валюта </label>
                 <select name="currency" id="currency" value="${currency}">
-                    <option value="Dollar">Доллар</option>
-                    <option value="Rub">Рубль</option>
-                    <option value="Euro">Евро</option>
+                    <option value="dollar">Доллар</option>
+                    <option value="rub">Рубль</option>
+                    <option value="euro">Евро</option>
                 </select>
-                <label for="strahovka" class="main__text"> Страховка </label>
+                <label for="" class="main__text"> Страховка </label>
                 <select name="strahovka" id="strahovka" value="${strahovka}">
                     <option value="No">Нет</option>
                     <option value="Exist">Есть</option>
@@ -42,5 +53,13 @@
             </div>
         </form>
     </div>
+    <div class="changes container" >
+        <div class="changes__changes">
+            <form action="${pageContext.request.contextPath}/JavaToChange" method="post" class="changes__form">
+           		${changes}
+            </form>
+        </div>
+    </div>
+    
 </body>
 </html>
