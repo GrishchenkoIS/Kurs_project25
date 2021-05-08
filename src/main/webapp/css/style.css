@@ -4,6 +4,7 @@ body {
 
 }
 .container {
+	max-width: 1020px;
 	margin: 0 auto;
 }
 .header {
@@ -15,12 +16,31 @@ body {
 	text-align: center;
 	font-size: 40px;
 }
+.header__admin {}
+.header__form {
+	width: 400px;
+	margin-left: 100%;
+	transform: translate(-100%);
+
+}
+.input {
+	background-color: transparent;
+	border: solid 1px gray;
+	border-radius: 20px;
+	font-size: 14px;
+}
+
+.input:hover {
+	background-color: gray;
+}
+
 .main {
 	margin: 0 auto;
 }
 .text {
 	font-size: 20px;
 }
+
 .main__forms {
 	max-width: 500px;
 	background-color: #f7f7f7;
@@ -74,4 +94,23 @@ body {
 	text-align: right;
 	grid-column-start: 1;
 	grid-column-end: 3;
+}
+.changes {
+	margin-top: 100px;
+	align-items: center;
+}
+.changes__changes{
+	max-width: 300px;
+	margin: 0 auto;
+}
+.changes__form {
+}
+.changes__text {}
+.changes__submit {}
+
+.header__incorrect{
+	color: red;
+	width: 400px;
+	margin-left: 100%;
+	transform: translate(-100%);
 }
