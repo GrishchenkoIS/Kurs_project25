@@ -114,3 +114,10 @@ body {
 	margin-left: 100%;
 	transform: translate(-100%);
 }
+
+.login__form {
+	display: grid;
+	grid-template-columns: repeat(1,1fr);
+	grid-row-gap: 10px;
+	
+}
