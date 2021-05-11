@@ -16,7 +16,7 @@ public class CalculationC extends Calculator {
 	@Override
 	public Double Calculator() {
 		double sum = Calc.RequestCalc.first_result - Calc.RequestCalc.second_result;
-		rate = 7.3;
+		rate = Double.parseDouble(Calc.RequestCalc.stavka.get(2));
 		if (Strahovka().equals("Exist")) {
 			rate = rate - 1;
 		}
