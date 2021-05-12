@@ -1,9 +1,14 @@
 package kurs25;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +22,32 @@ import javax.servlet.http.HttpServletResponse;
 public class Calc extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		InputStream ins = getServletContext().getResourceAsStream("/WEB-INF/resource/password");
+
 		RequestCalc Calc = RequestCalc.fromRequestParameters(request);
+		try {
+			File file = new File("Stavka");
+	        //проверяем, что если файл не существует то создаем его
+	        if(!file.exists()){
+	            file.createNewFile();
+	          //PrintWriter обеспечит возможности записи в файл
+		        FileWriter out = new FileWriter(file.getAbsoluteFile(), false);
+		        try {
+		            //Записываем текст в файл
+		            out.write("8.3" + "\n" + "8.6" + "\n" + "7.3" + "\n");
+		        } finally {
+		            //После чего мы должны закрыть файл
+		            //Иначе файл не запишется
+		            out.close();
+		        }
+	        }
+	    } catch(IOException e) {
+	        throw new RuntimeException(e);
+	    }
+		InputStream ins = getServletContext().getResourceAsStream("Stavka");
 		if (ins == null) {
             System.out.println("Failed in reading file");
         } else {
-            BufferedReader br = new BufferedReader((new InputStreamReader(ins)));
+            BufferedReader br = new BufferedReader(new FileReader("Stavka"));
             String word;
             while ((word = br.readLine()) != null) {
             	Calc.stavka.add(word);
@@ -78,7 +103,7 @@ public class Calc extends HttpServlet {
 			} else if (target.equals("new house")) {
 				request.setAttribute("target_result", "Новостройка");
 			} else {
-				request.setAttribute("target_result", "Коммерческая");
+				request.setAttribute("target_result", "Комммерческая");
 			}
 			if (strahovka.equals("No")) {
 				request.setAttribute("strahovka_result", "Нет");
@@ -86,8 +111,8 @@ public class Calc extends HttpServlet {
 				request.setAttribute("strahovka_result", "Есть");
 			}
 			if (currency.equals("dollar")) {
-				request.setAttribute("currency_result", "Доллар");
-				request.setAttribute("currency_for_result", "Долларов ежемесячно");
+				request.setAttribute("currency_result", "Долллар");
+				request.setAttribute("currency_for_result", "Доллларов ежемесячно");
 			} else if (currency.equals("rub")) {
 				request.setAttribute("currency_result", "Рубль");
 				request.setAttribute("currency_for_result", "Рублей ежемесячно");
@@ -99,33 +124,43 @@ public class Calc extends HttpServlet {
 			
 			try { 
 			first_result=Double.parseDouble(sizeMortgage);
-			second_result=Double.parseDouble(firstPay);
-			data_result=Double.parseDouble(data);
+			
 			}
 			catch (NumberFormatException e) {
 				first_result=0;
-				second_result=0;
-				data_result=0;
+				request.setAttribute("first_result", 0);
 			}
-			
-			
+			try {
+				second_result=Double.parseDouble(firstPay);
+			} catch (NumberFormatException e) {
+				second_result=0;
+				request.setAttribute("second_result", 0);
+			}
+			try {
+				data_result=Double.parseDouble(data);
+			} catch (NumberFormatException e) {
+				data_result=0;
+				request.setAttribute("data_result", 0);
+			}
 			if (second_result < 0 || first_result <= 0) {
 				result = 0;
-			}
-			if (target.equals("ready house")) {
-				CalculationRH calculation = new CalculationRH();
-				request.setAttribute("result", calculation.res);
-			}
-			if (target.equals("new house")) {
-				CalculationNH calculation = new CalculationNH();
-				request.setAttribute("result", calculation.res);
-			}
-			if (target.equals("commercial")) {
-				CalculationC calculation = new CalculationC();
-				request.setAttribute("result", calculation.res);
+				request.setAttribute("result", result);
+			} else {
+				if (target.equals("ready house")) {
+					CalculationRH calculation = new CalculationRH();
+					request.setAttribute("result", calculation.res);
+				}
+				if (target.equals("new house")) {
+					CalculationNH calculation = new CalculationNH();
+					request.setAttribute("result", calculation.res);
+				}
+				if (target.equals("commercial")) {
+					CalculationC calculation = new CalculationC();
+					request.setAttribute("result", calculation.res);
+				}
 			}
 		}
-		
+	
 	}
 	
 	
