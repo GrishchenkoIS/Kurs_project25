@@ -16,11 +16,7 @@ public class CalculationC extends Calculator {
 	@Override
 	public Double Calculator() {
 		double sum = Calc.RequestCalc.first_result - Calc.RequestCalc.second_result;
-		if (IsDouble(Calc.RequestCalc.stavka.get(2))) {
-			rate = Double.parseDouble(Calc.RequestCalc.stavka.get(2));
-		} else {
-			rate = 7.3;
-		}
+		rate = 7.3;
 		if (Strahovka().equals("Exist")) {
 			rate = rate - 1;
 		}
@@ -34,12 +30,8 @@ public class CalculationC extends Calculator {
 	}
 	@Override
 	public boolean IsDouble(String d) {
-		try {
-			Double.parseDouble(d);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override

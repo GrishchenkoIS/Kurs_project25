@@ -14,10 +14,8 @@
     </header>
     <div class="main">
         <form action="${pageContext.request.contextPath}/JavaAdmin" method="post" class="main__forms">
-            <div class="login__form">
-                <label for="login" class="main__text"> Введите логин: </label>
-                <input type="text" name="login" id="login" value="${login}" class="main__input">
-                <label for="password" class="main__text"> Введите пароль: </label>
+            <div class="main__form">
+                <label for="size" class="main__text"> Введите пароль: </label>
                 <input type="text" name="password" id="password" value="${password}" class="main__input">
                 <input type="submit" name="sign" value="Ввод" class="main__submit">
             </div>
