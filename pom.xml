@@ -7,7 +7,10 @@
   <name>test for kurs</name>
   <description>Test for laba4</description>
   <url>http://maven.apache.org</url>
-  
+  	<properties>
+		<project.build.sourceEncoding>cp1251</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>cp1251</project.reporting.outputEncoding>
+	</properties>
   <build>
   <finalName>Calculate</finalName>
   <defaultGoal>package</defaultGoal>
