@@ -3,6 +3,7 @@ before_script:
 - echo "Starting building"
 script:
 - mvn clean package
+- mvn package
 after_script:
 - echo "Script finished"
 after_success:
