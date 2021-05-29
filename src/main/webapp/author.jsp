@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header class="header container">
-        <h1 class="header__name">Результаты вычислений</h1>
+        <h1 class="header__name">Авторизация</h1>
     </header>
     <div class="main">
         <form action="${pageContext.request.contextPath}/JavaAdmin" method="post" class="main__forms">
@@ -22,6 +22,7 @@
                 <input type="submit" name="sign" value="Ввод" class="main__submit">
             </div>
         </form>
+        <h2 class="header__incorrect" >${incorrect}</h2>
     </div>
 </body>
 </html>
