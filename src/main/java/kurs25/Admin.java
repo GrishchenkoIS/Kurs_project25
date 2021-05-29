@@ -37,6 +37,7 @@ public class Admin extends HttpServlet {
 		            String word;
 		            
 		            while ((word = br.readLine()) != null) {
+		            	word = br.readLine();
 		            	String[] check = word.split(" ");
 		            	if (check[0].equals(request.getParameter("login"))) {
 		            		String[] words = word.split(" ");
@@ -59,12 +60,13 @@ public class Admin extends HttpServlet {
 					            			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
 					            	status = 0;
 					            	request.getRequestDispatcher("/index.jsp").forward(request, response);
-								} else {
+								    break;
+								 } else {
 									request.setAttribute("incorrect", "Не верный логин или пароль");
 									request.setAttribute("changes", "");
 								
 							}
-		            		break;
+		          
 		            	} else {
 		            		request.setAttribute("incorrect", "Не верный логин или пароль");
 							request.setAttribute("changes", "");
