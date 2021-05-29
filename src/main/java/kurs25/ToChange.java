@@ -43,13 +43,13 @@ public class ToChange extends HttpServlet  {
         	request.setAttribute("display", "none");
         	request.setAttribute("admin", "<div class=\"header__form\">\n"
         			+ "                <label for=\"\" class=\"header__text\"> Здравствуйте администратор</label>\n"
-        			+ "                <input type=\"submit\" name=\"sign\" value=\"ВЫйти\" class=\"header__input input\"></div>");
+        			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
         	
 		} else if (Admin.status == 0) {
 			request.setAttribute("incorrect", "");
         	request.setAttribute("display", "none");
         	request.setAttribute("admin", "<div class=\"header__form\">\n"
-        			+ "                <label for=\"\" class=\"header__text\"> Здравствуйте пользователь</label>\n"
+        			+ "                <label for=\"\" class=\"header__text\"> Здравсвуйте пользователь</label>\n"
         			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
         	
 		}
