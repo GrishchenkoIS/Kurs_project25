@@ -27,7 +27,7 @@ public class Admin extends HttpServlet {
 		public static int status = 2 ;
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			;
+			
 			try {
 				InputStream ins = getServletContext().getResourceAsStream("password");
 				if (ins == null) {
@@ -43,36 +43,40 @@ public class Admin extends HttpServlet {
 		           
 		            		if (words[0].equals(request.getParameter("login")) && words[1].equals(request.getParameter("password")) && words[2].equals("1")) {
 				            	request.setAttribute("incorrect", "");
-				            	request.setAttribute("changes", "<label for=\"changes\" class=\"changes__text\"> Настройка ставки :</label>\n"
+				            	request.setAttribute("changes", "<label for=\"changes\" class=\"changes__text\"> Изменить ставку :</label>\n"
 				            			+ "                <input type=\"submit\" name=\"sign\" value=\"Изменить\" class=\"changes__submit input\">");
 				            	request.setAttribute("display", "none");
 				            	request.setAttribute("admin", "<div class=\"header__form\">\n"
-				            			+ "                <label for=\"\" class=\"header__text\"> Здравсвуйте администратор </label>\n"
+				            			+ "                <label for=\"\" class=\"header__text\"> Здравствуйте администратор</label>\n"
 				            			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
 				            	status = 1;
+				            	request.getRequestDispatcher("/index.jsp").forward(request, response);
 								}else if (words[0].equals(request.getParameter("login")) && words[1].equals(request.getParameter("password")) && words[2].equals("0")) {
 									request.setAttribute("incorrect", "");
 					            	request.setAttribute("display", "none");
 					            	request.setAttribute("admin", "<div class=\"header__form\">\n"
-					            			+ "                <label for=\"\" class=\"header__text\"> Здравсвуйте пользователь</label>\n"
+					            			+ "                <label for=\"\" class=\"header__text\"> Здравствуйте пользователь</label>\n"
 					            			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
 					            	status = 0;
+					            	request.getRequestDispatcher("/index.jsp").forward(request, response);
 								} else {
-								request.setAttribute("incorrect", "Не правильный пароль");
-								request.setAttribute("changes", "");
+									request.setAttribute("incorrect", "Не верный логин или пароль");
+									request.setAttribute("changes", "");
 								
 							}
 		            		break;
+		            	} else {
+		            		request.setAttribute("incorrect", "Не верный логин или пароль");
+							request.setAttribute("changes", "");
+							request.getRequestDispatcher("/author.jsp").forward(request, response);
+							break;
 		            	}
-		            
-		             
-		            
 		        }
 		        }	
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        }
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			
 			
 			
 		
