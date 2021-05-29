@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=Cp1251"
+    pageEncoding="Cp1251"%>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>РђРІС‚РѕСЂРёР·Р°С†РёСЏ</title>
+	<title>Авторизация</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<header class="header container">
-        <h1 class="header__name">РђРІС‚РѕСЂРёР·Р°С†РёСЏ</h1>
+        <h1 class="header__name">Авторизация</h1>
     </header>
     <div class="main">
         <form action="${pageContext.request.contextPath}/JavaAdmin" method="post" class="main__forms">
             <div class="login__form">
-                <label for="login" class="main__text"> Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ: </label>
+                <label for="login" class="main__text"> Введите логин: </label>
                 <input type="text" name="login" id="login" value="${login}" class="main__input">
-                <label for="password" class="main__text"> Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: </label>
+                <label for="password" class="main__text"> Введите пароль: </label>
                 <input type="text" name="password" id="password" value="${password}" class="main__input">
-                <input type="submit" name="sign" value="Р’РІРѕРґ" class="main__submit">
+                <input type="submit" name="sign" value="Ввод" class="main__submit">
             </div>
         </form>
         <h2 class="header__incorrect" >${incorrect}</h2>

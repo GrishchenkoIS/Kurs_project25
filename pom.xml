@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>testkurs25</groupId>
-  <artifactId>testkurs25</artifactId>
+  <groupId>kurs25</groupId>
+  <artifactId>kurs25</artifactId>
   <version>1</version>
   <packaging>war</packaging>
   
    <properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<project.build.sourceEncoding>cp1251</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>cp1251</project.reporting.outputEncoding>
 </properties>
   
   <build>
@@ -22,7 +22,7 @@
 	        <configuration>
 	          <source>1.8</source>
           		<target>1.8</target>
-          		<encoding>UTF-8</encoding>
+          		<encoding>cp1251</encoding>
 	        </configuration>
 	      </plugin>
 	      
