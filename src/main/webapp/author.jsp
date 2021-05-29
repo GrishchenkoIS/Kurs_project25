@@ -2,7 +2,7 @@
     pageEncoding="Cp1251"%>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="Cp1251">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Авторизация</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
