@@ -34,10 +34,12 @@ public class Admin extends HttpServlet {
 		            System.out.println("Failed in reading file");
 		        } else {
 		            BufferedReader br = new BufferedReader((new InputStreamReader(ins)));
-		            String word = " ";
+		            String word = "";
 		            
-		            while (word != null) {
-		            	word = br.readLine();
+		            boolean statusWord = false;
+		            
+		            while ((word = br.readLine())!= null) {
+		            	
 		            	String[] check = word.split(" ");
 		            	if (check[0].equals(request.getParameter("login"))) {
 		            		String[] words = word.split(" ");
@@ -52,6 +54,7 @@ public class Admin extends HttpServlet {
 				            			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
 				            	status = 1;
 				            	request.getRequestDispatcher("/index.jsp").forward(request, response);
+				            	break;
 								}else if (words[0].equals(request.getParameter("login")) && words[1].equals(request.getParameter("password")) && words[2].equals("0")) {
 									request.setAttribute("incorrect", "");
 					            	request.setAttribute("display", "none");
@@ -62,13 +65,23 @@ public class Admin extends HttpServlet {
 					            	request.getRequestDispatcher("/index.jsp").forward(request, response);
 								    break;
 								 } else {
-									request.setAttribute("incorrect", "Не верный логин или пароль");
-									request.setAttribute("changes", "");
+										request.setAttribute("incorrect", "Не верный логин или пароль");
+										request.setAttribute("changes", "");
+										request.getRequestDispatcher("/author.jsp").forward(request, response);
+										break;
 								
 							}
 		          
+		            	} else {
+		            		statusWord = true;
 		            	}
+		            	
 		        }
+		            if (statusWord) {
+						request.setAttribute("incorrect", "Не верный логин или пароль");
+						request.setAttribute("changes", "");
+						request.getRequestDispatcher("/author.jsp").forward(request, response);
+		            }
 		        }	
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
