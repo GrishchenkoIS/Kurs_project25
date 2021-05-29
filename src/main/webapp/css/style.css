@@ -1,7 +1,8 @@
+html {
+	height: 100%;
+}
 body {
 	background: linear-gradient(-45deg,#66ffcc,#ffffff);
-	
-
 }
 .container {
 	max-width: 1020px;
@@ -110,9 +111,8 @@ body {
 
 .header__incorrect{
 	color: red;
-	width: 400px;
-	margin-left: 100%;
-	transform: translate(-100%);
+	width: 100%;
+	text-align: center;
 }
 
 .login__form {

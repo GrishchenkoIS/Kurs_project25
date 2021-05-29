@@ -1,69 +1,64 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>kurs25</groupId>
-  <artifactId>kusr25</artifactId>
+  <groupId>testkurs25</groupId>
+  <artifactId>testkurs25</artifactId>
   <version>1</version>
   <packaging>war</packaging>
-  <name>test for kurs</name>
-  <description>Test for laba4</description>
-  <url>http://maven.apache.org</url>
-  	<properties>
-		<project.build.sourceEncoding>cp1251</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>cp1251</project.reporting.outputEncoding>
-	</properties>
+  
+  
+  
   <build>
   <finalName>Calculate</finalName>
   <defaultGoal>package</defaultGoal>
-    
-<pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
-                
-                <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-dependency-plugin</artifactId>
-    <version>3.1.2</version>
-    <executions>
-        <execution>
-            <phase>package</phase>
-            <goals>
-                <goal>copy</goal>
-            </goals>
-            <configuration>
-                <artifactItems>
-                    <artifactItem>
-                        <groupId>com.heroku</groupId>
-                        <artifactId>webapp-runner</artifactId>
-                        <version>9.0.31.0</version>
-                        <destFileName>webapp-runner.jar</destFileName>
-                    </artifactItem>
-                </artifactItems>
-                <outputDirectory>artifacts</outputDirectory>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-                
-<plugin>
-    <artifactId>maven-war-plugin</artifactId>
-    <version>3.3.0</version>
-    <configuration>
-        <goal>war:inplace</goal>
-        <outputDirectory>artifacts</outputDirectory>
-    </configuration>
-</plugin>
-                
-            </plugins>
-        </pluginManagement>
-</build>
   
+  <pluginManagement>
+	    <plugins>
+	      <plugin>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.8.1</version>
+	        <configuration>
+	          <source>1.8</source>
+          		<target>1.8</target>
+	        </configuration>
+	      </plugin>
+	      
+	      <plugin>
+		    <artifactId>maven-war-plugin</artifactId>
+		    <version>3.3.0</version>
+		    <configuration>
+		        <goal>war:inplace</goal>
+		        <outputDirectory>artifacts</outputDirectory>
+		    </configuration>
+		  </plugin>
+	      
+	      <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-dependency-plugin</artifactId>
+		    <version>3.1.2</version>
+		    <executions>
+		        <execution>
+		            <phase>package</phase>
+		            <goals>
+		                <goal>copy</goal>
+		            </goals>
+		            <configuration>
+		                <artifactItems>
+		                    <artifactItem>
+		                        <groupId>com.heroku</groupId>
+		                        <artifactId>webapp-runner</artifactId>
+		                        <version>9.0.31.0</version>
+		                        <destFileName>webapp-runner.jar</destFileName>
+		                    </artifactItem>
+		                </artifactItems>
+		                <outputDirectory>artifacts</outputDirectory>
+		            </configuration>
+		        </execution>
+		    </executions>
+		</plugin>
+		
+	    </plugins>
+    </pluginManagement>
+  </build>
   <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -88,8 +83,16 @@
     <version>9.0.27.1</version>
     <scope>provided</scope>
 </dependency>
+
         
-        
+        <dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itextpdf</artifactId>
+    <version>5.5.13</version>
+</dependency>
+
+
         
     </dependencies> 
+    
 </project>
