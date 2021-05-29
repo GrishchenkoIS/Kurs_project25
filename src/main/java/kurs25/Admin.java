@@ -38,7 +38,6 @@ public class Admin extends HttpServlet {
 		            
 		            while (word != null) {
 		            	word = br.readLine();
-		            	System.out.println(word);
 		            	String[] check = word.split(" ");
 		            	if (check[0].equals(request.getParameter("login"))) {
 		            		String[] words = word.split(" ");
