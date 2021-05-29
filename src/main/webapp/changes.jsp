@@ -1,27 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=Cp1251"
-    pageEncoding="Cp1251"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 	<meta charset="Cp1251">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Изменение ставки</title>
+	<title>РР·РјРµРЅРµРЅРёРµ СЃС‚Р°РІРєРё</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<header class="header container">
-        <h1 class="header__name">Измена ставки по кредиту</h1>
+        <h1 class="header__name">РР·РјРµРЅР° СЃС‚Р°РІРєРё РїРѕ РєСЂРµРґРёС‚Сѓ</h1>
     </header>
     <div class="main">
         <form action="${pageContext.request.contextPath}/JavaChange" method="post" class="main__forms">
             <div class="main__form">
-                <label for="size" class="main__text"> Новая ставка готового жилья (${stavkaRH}) : </label>
+                <label for="size" class="main__text"> РќРѕРІР°СЏ СЃС‚Р°РІРєР° РіРѕС‚РѕРІРѕРіРѕ Р¶РёР»СЊСЏ (${stavkaRH}) : </label>
                 <input type="text" name="StReadyHouse" id="StReadyHouse" value="${StReadyHouse}" class="main__input">
-                <label for="size" class="main__text"> Новая ставка новостройки (${stavkaNH}) : </label>
+                <label for="size" class="main__text"> РќРѕРІР°СЏ СЃС‚Р°РІРєР° РЅРѕРІРѕСЃС‚СЂРѕР№РєРё (${stavkaNH}) : </label>
                 <input type="text" name="StNewHouse" id="StNewHouse" value="${StNewHouse}" class="main__input">
-                <label for="size" class="main__text"> Новая ставка коммерческая (${stavkaC}) : </label>
+                <label for="size" class="main__text"> РќРѕРІР°СЏ СЃС‚Р°РІРєР° РєРѕРјРјРµСЂС‡РµСЃРєР°СЏ (${stavkaC}) : </label>
                 <input type="text" name="StComercial" id="StComercial" value="${StComercial}" class="main__input">
-                <input type="submit" name="sign" value="Ввод" class="main__submit">
+                <input type="submit" name="sign" value="Р’РІРѕРґ" class="main__submit">
             </div>
         </form>
     </div>
