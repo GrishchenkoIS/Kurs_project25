@@ -34,10 +34,11 @@ public class Admin extends HttpServlet {
 		            System.out.println("Failed in reading file");
 		        } else {
 		            BufferedReader br = new BufferedReader((new InputStreamReader(ins)));
-		            String word;
+		            String word = " ";
 		            
-		            while ((word = br.readLine()) != null) {
+		            while (word != null) {
 		            	word = br.readLine();
+		            	System.out.println(word);
 		            	String[] check = word.split(" ");
 		            	if (check[0].equals(request.getParameter("login"))) {
 		            		String[] words = word.split(" ");
@@ -67,11 +68,6 @@ public class Admin extends HttpServlet {
 								
 							}
 		          
-		            	} else {
-		            		request.setAttribute("incorrect", "Не верный логин или пароль");
-							request.setAttribute("changes", "");
-							request.getRequestDispatcher("/author.jsp").forward(request, response);
-							break;
 		            	}
 		        }
 		        }	
