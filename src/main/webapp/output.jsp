@@ -20,9 +20,11 @@
         <p class="result__text text"><strong>Страховка: </strong>${strahovka_result}</p>
         <p class="result__text text"><strong>Цель кредита: </strong>${target_result}</p>
         <p class="result__result text">Ресультат: ${result} ${currency_for_result}</p>
-        <form action="${pageContext.request.contextPath}/index.jsp" class="result__form">
+        <form action="${pageContext.request.contextPath}/Back" method="post" class="result__form">
             <input type="submit" name="sign" value="Назад">
         </form> 
+        <a href="Check.pdf"> Открыть PDF-файл</a>
+		<a href="Check.pdf" download> Скачать PDF-файл</a>
     </div>
 </body>
 </html>

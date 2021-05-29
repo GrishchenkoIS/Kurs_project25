@@ -14,13 +14,9 @@
     <form action="${pageContext.request.contextPath}/JavaExit" method="post" class="header__admin">
             ${admin}
         </form>
-        <form action="${pageContext.request.contextPath}/JavaPass" method="post" class="header__admin">
-            <div class="header__form">
-                <label for="" class="header__text">Административная панель</label>
-                <input type="submit" name="sign" value="Авторизоваться" class="header__input input"></div>
-        </form>
         
-        <h2 class="header__incorrect">${incorrect}</h2>
+        
+        
         <h1 class="header__name">Ипотечный калькулятор для юридических лиц</h1>
     </header>
     <div class="main">
@@ -49,12 +45,13 @@
                     <option value="new house">Новостройка</option>
                     <option value="commercial">Коммерческая</option>
                 </select>
-                <input type="submit" name="sign" value="Расчитать" class="main__submit">
+                <input type="submit" name="sign" value="Рассчитать" class="main__submit">
             </div>
         </form>
     </div>
     <div class="changes container" >
         <div class="changes__changes">
+        	<p style = "color:red">${incChanges}</p>
             <form action="${pageContext.request.contextPath}/JavaToChange" method="post" class="changes__form">
            		${changes}
             </form>
