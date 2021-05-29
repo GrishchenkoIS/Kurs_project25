@@ -2,11 +2,13 @@ package kurs25;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLDecoder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -18,36 +20,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="Calc", urlPatterns="/JavaCalc") // URL
+import kurs25.CreatePDF;
+
+@WebServlet(name="Calc", urlPatterns="/JavaCalc") //Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦ Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦Р С—РЎвЂ”Р вЂ¦ Р С—РЎвЂ”Р вЂ¦ URL
 public class Calc extends HttpServlet {
+	
+	public static String creditAmount;
+	public static String firstPayPDF;
+	public static String paymentPerMonth;
+	public static String purposeOfTheLoan;
+	public static String currencyPDF;
+	public static String strahovkaPDF;
+	public static String dataPDF;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		RequestCalc Calc = RequestCalc.fromRequestParameters(request);
-		try {
-			File file = new File("Stavka");
-	        //проверяем, что если файл не существует то создаем его
-	        if(!file.exists()){
-	            file.createNewFile();
-	          //PrintWriter обеспечит возможности записи в файл
-		        FileWriter out = new FileWriter(file.getAbsoluteFile(), false);
-		        try {
-		            //Записываем текст в файл
-		            out.write("8.3" + "\n" + "8.6" + "\n" + "7.3" + "\n");
-		        } finally {
-		            //После чего мы должны закрыть файл
-		            //Иначе файл не запишется
-		            out.close();
-		        }
-	        }
-	    } catch(IOException e) {
-	        throw new RuntimeException(e);
-	    }
-		InputStream ins = getServletContext().getResourceAsStream("Stavka");
+		
+		File currentClass = new File(URLDecoder.decode(Calc.class
+                .getProtectionDomain()
+                .getCodeSource()
+                .getLocation()
+                .getPath(), "UTF-8"));
+	
+		String filepath = currentClass.getParent();
+		File currentClass2 = new File(URLDecoder.decode(filepath, "UTF-8"));
+		filepath = currentClass2.getParent();
+		
+		InputStream ins = new FileInputStream(filepath + "/Stavka");
 		if (ins == null) {
             System.out.println("Failed in reading file");
         } else {
-            BufferedReader br = new BufferedReader(new FileReader("Stavka"));
+            BufferedReader br = new BufferedReader(new FileReader(filepath + "/Stavka"));
             String word;
             while ((word = br.readLine()) != null) {
             	Calc.stavka.add(word);
@@ -55,9 +59,17 @@ public class Calc extends HttpServlet {
         }
 		
 		Calc.setAsRequestAttributesAndCalculate(request);
-		 
-		request.getRequestDispatcher("/output.jsp").forward(request, response);
-		Calc.stavka.clear();
+		 if ((Admin.status == 0) || (Admin.status == 1)) {
+			 request.getRequestDispatcher("/output.jsp").forward(request, response);
+				Calc.stavka.clear();
+				
+				CreatePDF PDF = new CreatePDF();
+				String goals = "Hello";
+				PDF.Create(goals);
+		 } else {
+			 request.getRequestDispatcher("/author.jsp").forward(request, response);
+		 }
+		
 		
 	}
 	
@@ -103,7 +115,7 @@ public class Calc extends HttpServlet {
 			} else if (target.equals("new house")) {
 				request.setAttribute("target_result", "Новостройка");
 			} else {
-				request.setAttribute("target_result", "Комммерческая");
+				request.setAttribute("target_result", "Коммерческое");
 			}
 			if (strahovka.equals("No")) {
 				request.setAttribute("strahovka_result", "Нет");
@@ -111,8 +123,8 @@ public class Calc extends HttpServlet {
 				request.setAttribute("strahovka_result", "Есть");
 			}
 			if (currency.equals("dollar")) {
-				request.setAttribute("currency_result", "Долллар");
-				request.setAttribute("currency_for_result", "Доллларов ежемесячно");
+				request.setAttribute("currency_result", "Доллар");
+				request.setAttribute("currency_for_result", "Долларов ежемесячно");
 			} else if (currency.equals("rub")) {
 				request.setAttribute("currency_result", "Рубль");
 				request.setAttribute("currency_for_result", "Рублей ежемесячно");
@@ -149,16 +161,37 @@ public class Calc extends HttpServlet {
 				if (target.equals("ready house")) {
 					CalculationRH calculation = new CalculationRH();
 					request.setAttribute("result", calculation.res);
+					result = calculation.res;
 				}
 				if (target.equals("new house")) {
 					CalculationNH calculation = new CalculationNH();
 					request.setAttribute("result", calculation.res);
+					result = calculation.res;
 				}
 				if (target.equals("commercial")) {
 					CalculationC calculation = new CalculationC();
 					request.setAttribute("result", calculation.res);
+					result = calculation.res;
 				}
 			}
+			
+			creditAmount = Double.toString(first_result);
+			firstPayPDF = Double.toString(second_result);
+			paymentPerMonth = Double.toString(result);
+			purposeOfTheLoan = target;
+			if (currency.equals("dollar")) {
+				currencyPDF = "Dollar";
+			} else if (currency.equals("rub")) {
+				currencyPDF = "Rub";
+			} else {
+				currencyPDF = "Euro";
+			}
+			dataPDF = Double.toString(data_result);
+			if (strahovka.equals("No")) {
+				strahovkaPDF = "No";
+			} else {
+				strahovkaPDF = "Yes";
+			} 
 		}
 	
 	}
