@@ -48,6 +48,7 @@
                 <input type="submit" name="sign" value="Рассчитать" class="main__submit">
             </div>
         </form>
+        <p class = "header__incorrect">${incorrect}</p>
     </div>
     <div class="changes container" >
         <div class="changes__changes">
