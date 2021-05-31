@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import kurs25.Admin;
 @WebServlet(name="ToChange", urlPatterns="/JavaChange")
 public class ToChange extends HttpServlet  {
 
@@ -33,47 +34,47 @@ public class ToChange extends HttpServlet  {
 		if ((IsDouble(request.getParameter("StReadyHouse"))) && (IsDouble(request.getParameter("StComercial")) && (IsDouble(request.getParameter("StNewHouse"))))) {
 			write(filepath + "/Stavka", request.getParameter("StReadyHouse") + "\n" + request.getParameter("StNewHouse") + "\n" +request.getParameter("StComercial"));
 		} else {
-			request.setAttribute("incChanges", "Введены не верные данные");
+			request.setAttribute("incChanges", "�� ����� ������� ������");
 		}
 		
 		if ( Admin.status == 1 ) {
 			request.setAttribute("incorrect", "");
-        	request.setAttribute("changes", "<label for=\"changes\" class=\"changes__text\"> Изменить ставку :</label>\n"
-        			+ "                <input type=\"submit\" name=\"sign\" value=\"Изменить\" class=\"changes__submit input\">");
+        	request.setAttribute("changes", "<label for=\"changes\" class=\"changes__text\"> �������� ������ :</label>\n"
+        			+ "                <input type=\"submit\" name=\"sign\" value=\"��������\" class=\"changes__submit input\">");
         	request.setAttribute("display", "none");
         	request.setAttribute("admin", "<div class=\"header__form\">\n"
-        			+ "                <label for=\"\" class=\"header__text\"> Здравствуйте администратор</label>\n"
-        			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
+        			+ "                <label for=\"\" class=\"header__text\"> ������������ �������������</label>\n"
+        			+ "                <input type=\"submit\" name=\"sign\" value=\"�����\" class=\"header__input input\"></div>");
         	
 		} else if (Admin.status == 0) {
 			request.setAttribute("incorrect", "");
         	request.setAttribute("display", "none");
         	request.setAttribute("admin", "<div class=\"header__form\">\n"
-        			+ "                <label for=\"\" class=\"header__text\"> Здравствуйте пользователь</label>\n"
-        			+ "                <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
+        			+ "                <label for=\"\" class=\"header__text\"> ������������ �������������</label>\n"
+        			+ "                <input type=\"submit\" name=\"sign\" value=\"�����\" class=\"header__input input\"></div>");
         	
 		}
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 	public static void write(String fileName, String text) {
-	    //Р С›Р С—РЎР‚Р ВµР Т‘Р ВµР В»РЎРЏР ВµР С� РЎвЂћР В°Р в„–Р В»
+	    //Р С›Р С—РЎР‚Р ВµР Т�Р ВµР В»РЎРЏР ВµР С� РЎвЂћР В°Р в„–Р В»
 	    File file = new File(fileName);
 
 	    try {
-	        //Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЏР ВµР С�, РЎвЂЎРЎвЂљР С• Р ВµРЎРѓР В»Р С‘ РЎвЂћР В°Р в„–Р В» Р Р…Р Вµ РЎРѓРЎС“РЎвЂ°Р ВµРЎРѓРЎвЂљР Р†РЎС“Р ВµРЎвЂљ РЎвЂљР С• РЎРѓР С•Р В·Р Т‘Р В°Р ВµР С� Р ВµР С–Р С•
+	        //Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЏР ВµР С�, РЎвЂЎРЎвЂљР С• Р ВµРЎРѓР В»Р С� РЎвЂћР В°Р в„–Р В» Р Р…Р Вµ РЎРѓРЎС“РЎвЂ°Р ВµРЎРѓРЎвЂљР Р†РЎС“Р ВµРЎвЂљ РЎвЂљР С• РЎРѓР С•Р В·Р Т�Р В°Р ВµР С� Р ВµР С–Р С•
 	        if(!file.exists()){
 	            file.createNewFile();
 	        }
 
-	        //PrintWriter Р С•Р В±Р ВµРЎРѓР С—Р ВµРЎвЂЎР С‘РЎвЂљ Р Р†Р С•Р В·Р С�Р С•Р В¶Р Р…Р С•РЎРѓРЎвЂљР С‘ Р В·Р В°Р С—Р С‘РЎРѓР С‘ Р Р† РЎвЂћР В°Р в„–Р В»
+	        //PrintWriter Р С•Р В±Р ВµРЎРѓР С—Р ВµРЎвЂЎР С�РЎвЂљ Р Р†Р С•Р В·Р С�Р С•Р В¶Р Р…Р С•РЎРѓРЎвЂљР С� Р В·Р В°Р С—Р С�РЎРѓР С� Р Р† РЎвЂћР В°Р в„–Р В»
 	        FileWriter out = new FileWriter(file.getAbsoluteFile(), false);
 
 	        try {
-	            //Р вЂ”Р В°Р С—Р С‘РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С� РЎвЂљР ВµР С”РЎРѓРЎвЂљ РЎС“ РЎвЂћР В°Р в„–Р В»
+	            //Р вЂ”Р В°Р С—Р С�РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С� РЎвЂљР ВµР С”РЎРѓРЎвЂљ РЎС“ РЎвЂћР В°Р в„–Р В»
 	            out.write(text);
 	        } finally {
-	            //Р СџР С•РЎРѓР В»Р Вµ РЎвЂЎР ВµР С–Р С• Р С�РЎвЂ№ Р Т‘Р С•Р В»Р В¶Р Р…РЎвЂ№ Р В·Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В»
-	            //Р пїЅР Р…Р В°РЎвЂЎР Вµ РЎвЂћР В°Р в„–Р В» Р Р…Р Вµ Р В·Р В°Р С—Р С‘РЎв‚¬Р ВµРЎвЂљРЎРѓРЎРЏ
+	            //Р СџР С•РЎРѓР В»Р Вµ РЎвЂЎР ВµР С–Р С• Р С�РЎвЂ№ Р Т�Р С•Р В»Р В¶Р Р…РЎвЂ№ Р В·Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В»
+	            //Р пїЅР Р…Р В°РЎвЂЎР Вµ РЎвЂћР В°Р в„–Р В» Р Р…Р Вµ Р В·Р В°Р С—Р С�РЎв‚¬Р ВµРЎвЂљРЎРѓРЎРЏ
 	            out.close();
 	        }
 	    } catch(IOException e) {
