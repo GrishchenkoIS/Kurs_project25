@@ -51,7 +51,7 @@
     </div>
     <div class="changes container" >
         <div class="changes__changes">
-        	<p style = "color:red">${incChanges}</p>
+        	<p class = "header__incorrect">${incChanges}</p>
             <form action="${pageContext.request.contextPath}/JavaToChange" method="post" class="changes__form">
            		${changes}
             </form>
