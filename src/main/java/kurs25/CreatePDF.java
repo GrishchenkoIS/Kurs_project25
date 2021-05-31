@@ -35,8 +35,8 @@ public class CreatePDF {
     public void Create(String numberpdf) throws IOException {
       	
     	Document document = new Document(); //создание класса Document
-		
-		String filepath = CreatePDF.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    	
+String filepath = CreatePDF.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
     	
 		File currentClass = new File(URLDecoder.decode(CreatePDF.class
@@ -58,8 +58,7 @@ public class CreatePDF {
 		Font fontpath =FontFactory.getFont(filepath + "/times.ttf");
 		document.open(); 
 		
-		BaseFont times =fontpath.getBaseFont() ;
-		
+		BaseFont times =fontpath.getBaseFont();
 		
 		String string_pdf = "Result for Calculate";
 		Paragraph paragraph = new Paragraph();
