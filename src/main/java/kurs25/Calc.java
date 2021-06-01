@@ -68,7 +68,7 @@ public class Calc extends HttpServlet {
 						+ " <input type=\"submit\" name=\"sign\" value=\"Изменить\" class=\"changes__submit input\">");
 				request.setAttribute("display", "none");
 				request.setAttribute("admin", "<div class=\"header__form\">\n"
-						+ " <label for=\"\" class=\"header__text\"> Здравсвуйте администратор</label>\n"
+						+ " <label for=\"\" class=\"header__text\"> Здравствуйте администратор</label>\n"
 						+ " <input type=\"submit\" name=\"sign\" value=\"Выйти\" class=\"header__input input\"></div>");
 
 			} else if (Admin.status == 0) {
